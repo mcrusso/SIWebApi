@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html ng-app="siwebapi" ng-controller="AppController">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI WebApi</title>
+    
+    <link href="client/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="client/bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
+    <link href="client/bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet" />
+    <link href="client/bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="client/bower_components/Ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="client/bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet" />
+    <link href="client/bower_components/swal-forms/swal-forms.css" rel="stylesheet" />
+    <link href="client/bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet" />
+    <link href="client/css/site.css" rel="stylesheet" />
+   
+    <style type="text/css">
+        body .load-overlay {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            background-color: #FFF; /*dim the background*/
+            z-index: 99;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+            body .load-overlay img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: -90px 0px 0px -90px;
+                width: 180px;
+            }
+    </style>
+</head>
+<body class="{{bodyLayout}}" id="page-top">
+    <div class="load-overlay">
+        <img src="client/images/loading.gif" />
+    </div>
+    <div class="wrapper">
+        <ui-view></ui-view>
+    </div>
+    <script src="client/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="client/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+    <script src="client/bower_components/angular/angular.js"></script>
+    <script src="client/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="client/bower_components/angular-route/angular-route.js"></script>
+    <script src="client/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="client/bower_components/angular-translate/angular-translate.js"></script>
+    <script src="client/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="client/bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="client/bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="client/bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+    <script src="client/bower_components/angular-animate/angular-animate.js"></script>
+
+    <script src="client/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="client/bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
+
+    <script src="client/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="client/bower_components/swal-forms/swal-forms.js"></script>
+
+    <script src="client/js/linq.min.js"></script>
+    <script src="client/js/_environments.js"></script>
+   
+    <!--START MAIN APP -->
+    <script src="client/app/app.js"></script>
+    <script src="client/app/config.js"></script>
+
+    <script src="client/app/controllers/AppController.js"></script>
+    <!--<script src="client/app/directives/include-replace.js"></script>
+    <script src="client/app/directives/panel-container.js"></script>
+    <script src="client/app/directives/sidebar/main-sidebar.js"></script>
+    <script src="client/app/directives/sidebar/sidebar-toggle.js"></script>
+    <script src="client/app/directives/timeline-tree/timeline-tree.js"></script>
+    <script src="client/app/directives/json-edit/json-edit.js"></script>
+    <script src="client/app/directives/convert-to-number.js"></script>
+    <script src="client/app/directives/string-to-number.js"></script>
+    <script src="client/app/directives/src-maker.js"></script>-->
+
+    <!--START MAIN APP -->
+</body>
+</html>

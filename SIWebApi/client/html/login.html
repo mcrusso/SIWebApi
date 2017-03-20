@@ -1,0 +1,26 @@
+﻿<div class="login-box" ng-controller="LoginController">
+    <div class="account-logo">
+        <h1><a ui-sref="public.home">Sign in</a></h1>
+    </div>
+    <div class="login-box-body">
+
+        
+        <form name="loginForm" novalidate>
+            <div class="form-group">
+                <input type="email" ng-model="credentials.username" class="form-control" placeholder="E-mail" required />
+            </div>
+            <div class="form-group">
+                <input type="password" ng-model="credentials.password" class="form-control" placeholder="Password" required />
+            </div>
+            <div class="checkbox text-center">
+                <label><input ng-model="credentials.rememberMe" type="checkbox">Remember Me</label><span class="chart-separator">·</span><a ui-sref="public.forgot-password">I forgot my password</a>
+            </div>
+            <button class="btn btn-primary btn-block btn-flat" ng-disabled="!loginForm.$valid" ng-click="login(credentials)">Sign In</button>
+        </form>
+
+
+    </div>
+    <div class="login-box-footer">
+        <a ui-sref="public.register" class="btn btn-default btn-block btn-flat">Register new account</a>
+    </div>
+</div>
