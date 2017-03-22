@@ -40,14 +40,14 @@ var siwebapi = angular.module('siwebapi', [
                $stateProvider.state(state.name, state.state);
            });
        }])
-    //.run(function ($state, LoginService) {
-    //    if (LoginService.userInfo()) {
-    //        $state.go("private.user");
-    //    }
-    //    else {
-    //        $state.go("public.home");
-    //    }
-    //})
+    .run(function ($state, LoginService) {
+        if (LoginService.userInfo()) {
+            $state.go("private.user");
+        }
+        else {
+            $state.go("public.home");
+        }
+    })
 
 .config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "$qProvider", function ($stateProvider, $urlRouterProvider, $httpProvider, $qProvider) {
     $httpProvider.interceptors.push("AuthHttpResponseInterceptor");
