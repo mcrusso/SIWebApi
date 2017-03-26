@@ -1,6 +1,6 @@
 ﻿var states = [
         { name: 'public', state: { templateUrl: '/client/app/templates/main.html', data: { bodyLayout: '' } } },
-        { name: 'public.home', state: { url: '/home', templateUrl: '/client/html/home.html' } },
+        //{ name: 'public.home', state: { url: '/home', templateUrl: '/client/html/home.html' } },
         { name: 'public.privacy', state: { url: '/privacy', templateUrl: '/client/html/privacy.html' } },
         { name: 'public.terms', state: { url: '/terms', templateUrl: '/client/html/terms.html' } },
         { name: 'public.faq', state: { url: '/faq', templateUrl: '/client/html/faq.html' } },
@@ -45,7 +45,8 @@ var siwebapi = angular.module('siwebapi', [
             $state.go("private.user");
         }
         else {
-            $state.go("public.home");
+            $state.go("public.login");
+            //$state.go("public.home");
         }
     })
 

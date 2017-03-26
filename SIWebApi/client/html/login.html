@@ -1,10 +1,10 @@
 ﻿<div class="login-box" ng-controller="LoginController">
     <div class="account-logo">
-        <h1><a ui-sref="public.home">Sign in</a></h1>
+        <h1><a ui-sref="public.login">SIWebAPI</a></h1>
     </div>
-    <div class="login-box-body">
+    <div class="account-box-body">
 
-        
+        <p class="account-box-msg">Sign in to start your session</p>   
         <form name="loginForm" novalidate>
             <div class="form-group">
                 <input type="email" ng-model="credentials.username" class="form-control" placeholder="E-mail" required />
@@ -20,7 +20,7 @@
 
 
     </div>
-    <div class="login-box-footer">
+    <div class="account-box-footer">
         <a ui-sref="public.register" class="btn btn-default btn-block btn-flat">Register new account</a>
     </div>
 </div>

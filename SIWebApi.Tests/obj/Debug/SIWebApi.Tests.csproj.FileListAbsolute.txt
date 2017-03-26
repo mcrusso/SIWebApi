@@ -1,0 +1,1 @@
+C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi.Tests\obj\Debug\SIWebApi.Tests.csprojResolveAssemblyReference.cache

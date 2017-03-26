@@ -19,9 +19,13 @@ C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Web.Infrast
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Newtonsoft.Json.dll
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Owin.dll
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Net.Http.Formatting.dll
+C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Cors.dll
+C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.Cors.dll
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.dll
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.Owin.dll
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.WebHost.dll
+C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.Cors.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Newtonsoft.Json.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Net.Http.Formatting.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.xml
@@ -30,7 +34,6 @@ C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\EntityFramework.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\EntityFramework.SqlServer.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Security.xml
@@ -41,6 +44,5 @@ C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Securi
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.Owin.xml
-C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\obj\Debug\SIWebApi.csprojResolveAssemblyReference.cache
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\obj\Debug\SIWebApi.dll
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\obj\Debug\SIWebApi.pdb
