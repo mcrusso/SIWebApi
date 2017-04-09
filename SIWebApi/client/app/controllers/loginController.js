@@ -33,19 +33,19 @@
                     confirmButtonText: "Invia nuovamente!",
                     html: true
                 }, function () {
-                    AccountService.sendConfirmEmail(credentials.username).then(function (result) {
+                    LoginService.sendConfirmEmail(credentials.username).then(function (result) {
                         swal({
                             title: "E-Mail di conferma inviata!",
                             text: "<strong>Una E-Mail per confermare il tuo account è stata inviata!</strong><br />Controlla la tua E-Mail per confermare il tuo accounte e completare la registrazione.",
                             type: "success",
                             html: true,
                         }, function () {
-                            $state.go("anonymous.login");
+                            $state.go("public.login");
                         });
                     },
                     function (error) {
                         console.log(error);
-                        //Commons.alertError("Invio E-Mail di conferma fallito!", error);
+                        LoginService.showMessage("Invio E-Mail di conferma fallito!", error);
                     })
                 });
             }
@@ -70,11 +70,12 @@
                 type: "success",
                 html: true
             }, function () {
-                $state.go("anonymous.login");
+                $state.go("public.login");
             });
         }, function (error) {
             console.log(error);
-            //Commons.alertError("Registrazione fallita!", error);
+            LoginService.showMessage("Registrazione fallita!", error);
+            
         });
     };
 
@@ -87,30 +88,32 @@
                 type: "success",
                 html: true,
             }, function () {
-                $state.go("anonymous.login");
+                $state.go("public.login");
             });
         },
-        function (error) {
+        function (error) {  
             console.log(error);
-            //Commons.alertError("Richiesta di reset password fallita!", error);
-        });
+            LoginService.showMessage("Richiesta di reset password fallita!", error);
+                    });
     }
+
+      
 
     $scope.resetPassword = function (password) {
         LoginService.resetPassword($stateParams.idUser, $stateParams.code, password).then(function (result) {
             swal({
                 title: "Password impostata!",
-                text: "<strong>Password resettata con successso!</strong><br />Accedi direttamente dall'applicazione!",
+                text: "<strong>Password resettata con successo!</strong><br />Accedi direttamente dall'applicazione!",
                 type: "success",
                 html: true
             }, function () {
-                $state.go("anonymous.home");
+                $state.go("public.login");
             });
         },
          function (error) {
              console.log(error);
              if (error.status == -1)
-             { }// Commons.alertError("", error); }
+             {  LoginService.showMessage("", error); }
              else
              {
                  swal({
@@ -119,10 +122,50 @@
                      type: "error",
                      html: true
                  }, function () {
-                     $state.go("anonymous.home");
+                     $state.go("public.login");
                  });
              }
          });
+    }
+
+    $scope.confirmEmail = function () {
+        swal({
+            title: "Verifica il tuo account",
+            text: "Verifichiamo che il codice che ci hai mandato corrisponda al tuo account.",
+            type: "info",
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+            confirmButtonText: "Ok",
+        }, function () {
+            var idUser = $stateParams.idUser;
+            var code = $stateParams.code;
+            LoginService.confirmEmail($stateParams.idUser, $stateParams.code).then(function (result) {
+                swal({
+                    title: "Account confermato!",
+                    text: "<strong>Il tuo account è stato confermato!</strong><br />Accedi direttamente dall'applicazione.",
+                    type: "success",
+                    html: true
+                }, function () {
+                    $state.go("public.login");
+                });
+            },
+            function (error) {
+                console.log(error);
+                if (error.status == -1)
+                { LoginService.showMessage("", error); }
+                else
+                {
+                    swal({
+                        title: "Conferma account fallita!",
+                        text: "Il tuo account non è stato confermato.<br/>Richiedi un nuovo codice di verifica<br/><i>" + error.statusText + "</i>: <small>" + error.data + "</small>",
+                        type: "error",
+                        html: true
+                    }, function () {
+                        $state.go("public.login");
+                    });
+                }
+            })
+        });
     }
 
     

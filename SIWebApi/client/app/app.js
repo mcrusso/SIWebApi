@@ -111,4 +111,55 @@ var siwebapi = angular.module('siwebapi', [
       }
      
     }
-  }])
+ }])
+.controller("baseController", function ($scope, $rootScope, $state, AUTH_EVENTS, USER_ROLES, Auth, SessionStorage) {
+  $scope.bodyLayout = '';
+  $scope.userRoles = USER_ROLES;
+  $scope.isInRole = Auth.isInRole;
+  $scope.userInfo = Auth.userInfo();
+
+  $scope.$on(AUTH_EVENTS.loginSuccess, function (e, user) {
+    if (Auth.isInRole($scope.userRoles.admin)) {
+      $scope.userInfo = user;
+      $state.go("private.admin");
+    }
+    else {
+      swal("Not Authorized!", "User doesn't have permission to access administration panel.", "success");
+      
+      window.sessionStorage.clear();
+     
+      $scope.userInfo = null;
+      $state.go("public.login");
+    }
+  });
+
+  $scope.$on(AUTH_EVENTS.logoutSuccess, function (e) {
+    window.sessionStorage.clear();
+    $scope.userInfo = null;    
+    $state.go("public.login");
+  });
+
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function (e) {
+      window.sessionStorage.clear();  
+      $scope.userInfo = null;   
+      $state.go("public.login");
+  });
+
+  $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    if (angular.isDefined(toState.data) && angular.isDefined(toState.data.bodyLayout)) {
+      $scope.bodyLayout = toState.data.bodyLayout;
+      return;
+    }
+    $scope.bodyLayout = '';
+  });
+
+  $scope.someSelected = function (object) {
+    return Object.keys(object).some(function (key) {
+      return object[key];
+    });
+  };
+
+  $scope.getValueFromAEnum = function (enums, selected) {
+    return Enumerable.From(enums).Where("$.value == " + selected).FirstOrDefault();
+  }
+})

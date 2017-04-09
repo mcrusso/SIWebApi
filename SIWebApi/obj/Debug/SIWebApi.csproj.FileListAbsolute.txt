@@ -44,5 +44,7 @@ C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Securi
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\bin\System.Web.Http.Owin.xml
+C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\obj\Debug\SIWebApi.Migrations.Startup.resources
+C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\obj\Debug\SIWebApi.csproj.GenerateResource.Cache
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\obj\Debug\SIWebApi.dll
 C:\Progetti\GitHubAppVulnerabilities\SIWebApi\SIWebApi\obj\Debug\SIWebApi.pdb

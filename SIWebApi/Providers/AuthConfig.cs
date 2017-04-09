@@ -22,9 +22,7 @@ namespace SIWebApi.Providers
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
 
-        public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
-        public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
-        public static TwitterAuthenticationOptions twitterAuthOptions { get; private set; }
+        
         public static void Start(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
@@ -36,7 +34,7 @@ namespace SIWebApi.Providers
             BearerAuthOptions = new OAuthAuthorizationServerOptions
             {
                 Provider = new ApplicationOAuthProvider(PublicClientId),
-                TokenEndpointPath = new PathString("/Token"),
+                //TokenEndpointPath = new PathString("/Token"),
                 //AuthorizeEndpointPath = new PathString("/sso/account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(Double.Parse(ConfigurationManager.AppSettings["AccessTokenExpireTimeSpanFromMinutes"].ToString())),
                 AllowInsecureHttp = true,

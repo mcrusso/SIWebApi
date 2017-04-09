@@ -26,7 +26,7 @@ namespace SIWebApi.Utils
                 ticket.Properties.IssuedUtc = currentUtc;
                 ticket.Properties.ExpiresUtc = currentUtc.AddMinutes(Double.Parse(ConfigurationManager.AppSettings["AccessTokenExpireTimeSpanFromMinutes"].ToString()));
 
-                var result = AuthConfig.BearerAuthOptions.AccessTokenFormat.Protect(ticket);
+                var result = Startup.BearerAuthOptions.AccessTokenFormat.Protect(ticket);
                 return result;
             }
             return null;

@@ -1,0 +1,39 @@
+﻿<div class="account-box" ng-controller="LoginController">
+    <div class="account-logo">
+        <h1><a ui-sref="anonymous.home">siwebapi</a></h1>
+    </div>
+    <div class="account-box-body">
+        <p class="account-box-msg">Create a new account</p>
+        <form name="registerForm" novalidate>
+            <div class="form-group">
+                <input type="text" ng-model="registration.FirstName" class="form-control" placeholder="First name" required />
+            </div>
+            <div class="form-group">
+                <input type="text" ng-model="registration.LastName" class="form-control" placeholder="Last name" required />
+            </div>
+            <div class="form-group">
+                <input type="email" ng-model="registration.Email" class="form-control" placeholder="E-mail" required />
+            </div>
+            <div class="form-group">
+                <input type="password" ng-model="registration.Password" class="form-control" placeholder="Password" required />
+            </div>
+            <div class="form-group">
+                <input type="password" ng-model="registration.ConfirmPassword" class="form-control" placeholder="Confirm password" required />
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="registration.TermOfService"> Term of service
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="registration.Privacy"> Privacy
+                </label>
+            </div>
+            <button class="btn btn-primary btn-block btn-flat" ng-disabled="!registerForm.$valid" ng-click="register(registration)">Register</button>
+        </form>
+        <div class="text-center" style="margin-top:10px; padding:4px; border-top:1px solid #ccc">
+            <a ui-sref="anonymous.login">I have an account! Back to login</a>
+        </div>
+    </div>
+</div>

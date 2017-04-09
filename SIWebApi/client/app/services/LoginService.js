@@ -20,7 +20,7 @@
     $http(query).then(function (result) {
       token = result.data;
       window.sessionStorage.setItem("token", JSON.stringify(token));
-        //SessionStorage.set("token", token);
+       
       d.resolve(token);
     }, function (error) {
       console.log(error);
@@ -43,11 +43,10 @@
       return d.promise;
     }
 
-    var query = apiCall("/api/account/users/info", "GET")
+    var query = loginServices.apiCall("/api/auth/users/info", "GET")
     $http(query).then(function (res) {
         window.sessionStorage.setItem("userInfo", window.localStorage.setItem(JSON.stringify(res.data)));
-      //SessionStorage.set("userInfo", res.data);
-      d.resolve(res.data);
+            d.resolve(res.data);
     }, function (error) {
       d.reject(error);
     });
@@ -58,10 +57,9 @@
     var d = $q.defer();
     var promise = [];
     this.getToken(credentials).then(function (token) {
-      $http(apiCall("/api/account/users/info", "GET")).then(function (res) {
+        $http(loginServices.apiCall("/api/auth/users/info", "GET")).then(function (res) {
         window.sessionStorage.setItem("userInfo", (JSON.stringify(res.data)));
-        //SessionStorage.set("userInfo", res.data);
-        d.resolve(res);
+              d.resolve(res);
       },
       function (error) {
         console.log(error);
@@ -76,7 +74,7 @@
   };
 
   loginServices.logout = function () {
-    var query = apiCall("/api/account/logout", "GET")
+      var query = loginServices.apiCall("/api/auth/logout", "GET")
     return $http(query).then(function (res) {
       token = null;
       var user = loginServices.userInfo();
@@ -100,7 +98,7 @@
     var token = window.sessionStorage.getItem("token");
     if (!token)
       return false;
-    return !tokenIsExpired(token);
+    return !loginServices.tokenIsExpired(token);
   };
 
   loginServices.authorized = function (idUser, appKey) {
@@ -125,10 +123,10 @@
           return d.promise;
       }
 
-      $http(apiCall("/api/auth/app/" + appKey, "GET")).then(
+      $http(loginServices.apiCall("/api/auth/app/" + appKey, "GET")).then(
       function (res) {
           window.sessionStorage.setItem("authorized_" + idUser, (JSON.stringify(res.data)));
-          //SessionStorage.set("authorized_" + idUser, res.data);
+          
           d.resolve(res.data);
       },
       function (error) {
@@ -149,7 +147,7 @@
 
       var authorize = false;
       var store = window.sessionStorage.getItem("authorized_"+idUser);
-      //var store = SessionStorage.get("authorized_" + idUser);
+      
       if (store) authorize = store;
       return authorize;
   };
@@ -166,15 +164,61 @@
 
   loginServices.token = function () {
       return window.sessionStorage.getItem("token");
-      //return SessionStorage.get("token")
+      
   };
 
   loginServices.userInfo = function () {
       return window.sessionStorage.getItem("userInfo");
-      //return SessionStorage.get("userInfo");
+      
   };
 
-  function apiCall(serviceUrl, verb, parameters, body) {
+  loginServices.newChangePasswordObj = function () {
+      this.OldPassword = null;
+      this.NewPassword = null;
+      this.ConfirmPassword = null;
+  };
+
+  loginServices.newSetPasswordObj = function (idUser) {
+      this.UserId = idUser;
+      this.NewPassword = null;
+      this.ConfirmPassword = null;
+  };
+
+  loginServices.sendCodeModel = function (username) {
+      this.UserName = username,
+      this.ConfirmRedirectUrl = null,
+      this.ConfirmTemplateHtml = null
+  };
+
+  loginServices.changePassword = function (changePasswordModel) {
+      return $http(loginServices.apiCall("/api/auth/ChangePassword", "POST", null, changePasswordModel));
+  };
+
+  loginServices.setPassword = function (setPasswordModel) {
+      return $http(loginServices.apiCall("/api/auth/SetPassword", "POST", null, setPasswordModel));
+  };
+
+  loginServices.register = function (registerModel) {
+      return $http(loginServices.apiCall("/api/auth/Register", "POST", null, registerModel));
+  };
+
+  loginServices.sendConfirmEmail = function (username) {
+      return $http(loginServices.apiCall("/api/auth/SendConfirmEmail", "POST", null, new this.sendCodeModel(username)));
+  };
+
+  loginServices.confirmEmail = function (idUser, code) {
+      return $http(loginServices.apiCall("/api/auth/ConfirmEmail", "GET", { userId: idUser, code: code }));
+  };
+
+  loginServices.forgotPassword = function (username) {
+      return $http(loginServices.apiCall("/api/auth/SendResetPassword", "POST", null, new this.sendCodeModel(username)));
+  };
+
+  loginServices.resetPassword = function (idUser, code, password) {
+      return $http(loginServices.apiCall("/api/auth/ResetPassword", "GET", { userId: idUser, code: code, newPassword: password }));
+  };
+
+  loginServices.apiCall = function(serviceUrl, verb, parameters, body) {
       var query = {
           method: verb,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -191,12 +235,43 @@
       return query;
   };
 
-  function tokenIsExpired(token) {
+  loginServices.tokenIsExpired = function(token) {
       var expire = new Date(token.expires);
       return expire <= new Date();
   }
 
- 
+  loginServices.showMessage = function(title, error) {
+      if (error.status == -1)
+      { swal("ERROR: Connection Refused", "Check if services are available!", "error"); }
+      else
+      {
+          var message = error.data;
+          if (getType(error.data) == "Object")
+              message = undefined;
+          if (error.status == 500 && error.data.ExceptionMessage) {
+              if (error.data.InnerException) {
+                  message = error.data.InnerException.ExceptionMessage;
+                  if (error.data.InnerException.InnerException)
+                      message = error.data.InnerException.InnerException.ExceptionMessage;
+              }
+          }
+          swal({ title: title, text: error.statusText + message !== undefined ? " - " + message : "", type: "error", html: true }, null);
+      }
+
+  }
+var getType = function (obj) {
+    var type = Object.prototype.toString.call(obj);
+    if (type === "[object Object]") {
+      return "Object";
+    } else if (type === "[object Array]") {
+      return "Array";
+    } else if (type === "[object Boolean]") {
+      return "Boolean";
+    } else {
+      return "Literal";
+    }
+  };
+
    
 
          

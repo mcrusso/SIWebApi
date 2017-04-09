@@ -1,13 +1,11 @@
 ﻿(function (window) {
     var development = ['localhost'];
     var stage = ['siwebapi.azurewebsites.net'];
-    var produzione = ['siwebapi.eu'];
+    var produzione = ['siwebapi.azurewebsites.net'];
 
     if (development.indexOf(window.location.hostname) >= 0) {
         window._endpoint = {
-            service: 'http://localhost:57983'
-           
-
+            service: 'http://localhost:3566'
         };
         return;
     }
